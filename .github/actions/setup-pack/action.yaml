@@ -19,7 +19,7 @@ runs:
     - name: Install pack cli
       shell: bash
       run: |
-        curl -sSL "https://github.com/buildpacks/pack/releases/latest/download/pack-v0.33.2-linux.tgz" \
+        curl -sSL "https://github.com/buildpacks/pack/releases/download/v0.38.2/pack-v0.38.2-linux.tgz" \
         | sudo tar -C /usr/local/bin/ --no-same-owner -xzv pack
       
     - name: Log in to buildpack registry
