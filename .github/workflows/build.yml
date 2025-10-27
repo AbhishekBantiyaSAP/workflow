@@ -11,7 +11,7 @@ jobs:
             - name: Check out repository code
               uses: actions/checkout@v5
             - name: Setup jfrog and buildpack
-              uses: ./github/actions/setup-pack
+              uses: ./.github/actions/setup-pack
               with:
                   buildpack-registry: deploy-releases-hyperspace-docker.common.repositories.sapcloud.cn
                   image-registry: clm-ilm.common.repositories.cloud.sap
