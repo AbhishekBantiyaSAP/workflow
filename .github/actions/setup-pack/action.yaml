@@ -22,22 +22,16 @@ runs:
         curl -sSL "https://github.com/buildpacks/pack/releases/download/v0.38.2/pack-v0.38.2-linux.tgz" \
         | sudo tar -C /usr/local/bin/ --no-same-owner -xzv pack
 
-    - name: Debug input values
-      shell: bash
-      run: |
-        echo "Username received: ${{ inputs.jfrog-username }}"
-        echo "Buildpack registry: ${{ inputs.buildpack-registry }}"
+    - name: Log in to buildpack registry
+      uses: docker/login-action@v3
+      with:
+        registry: ${{ inputs.buildpack-registry }}
+        username: ${{ inputs.jfrog-username }}
+        password: ${{ inputs.jfrog-buildpack-password }}
 
-    # - name: Log in to buildpack registry
-    #   uses: docker/login-action@v3
-    #   with:
-    #     registry: ${{ inputs.buildpack-registry }}
-    #     username: ${{ inputs.jfrog-username }}
-    #     password: ${{ inputs.jfrog-buildpack-password }}
-
-    # - name: Log in to container registry
-    #   uses: docker/login-action@v3
-    #   with:
-    #     registry: ${{ inputs.image-registry}}
-    #     username: ${{ inputs.jfrog-username }}
-    #     password: ${{ inputs.jfrog-image-password }}
+    - name: Log in to container registry
+      uses: docker/login-action@v3
+      with:
+        registry: ${{ inputs.image-registry}}
+        username: ${{ inputs.jfrog-username }}
+        password: ${{ inputs.jfrog-image-password }}
