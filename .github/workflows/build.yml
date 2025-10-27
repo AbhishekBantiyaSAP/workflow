@@ -1,0 +1,29 @@
+name: test build html5 container image
+run-name: ${{github.actor}} is building container image
+on:
+  push:
+    branches:
+      - main
+jobs:
+    check-bats-version:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Check out repository code
+              uses: actions/checkout@v5
+            - name: Setup jfrog and buildpack
+              uses: ./github/actions/setup-pack
+              with:
+                  buildpack-registry: deploy-releases-hyperspace-docker.common.repositories.sapcloud.cn
+                  image-registry: clm-ilm.common.repositories.cloud.sap
+                  jfrog-image-password: ${{ secrets.IMAGE_PASSWORD }}
+                  jfrog-buildpack-password: ${{ secrets.BUILDPACK_PASSWORD }}
+                  jfrog-username: ${{ secrets.JFROG_USERNAME }}
+        
+            - name: Build image using pack
+              run: |
+                pack build clm-ilm.common.repositories.cloud.sap/cap-apps/i528716/html5-test:latest \
+                --path ./html5-deployer \
+                --builder paketobuildpacks/builder:base \
+                --buildpack deploy-releases-hyperspace-docker.common.repositories.sapcloud.cn/buildpacks/application-content-deployer-buildpack:1.1.0 \
+                --publish
+            

@@ -1,0 +1,93 @@
+{
+  "_version": "3.0.0",
+  "identification": {
+    "title": "xtravels",
+    "id": "xtravels-flp",
+    "entityType": "bundle"
+  },
+  "payload": {
+    "catalogs": [
+      {
+        "_version": "3.0.0",
+        "identification": {
+          "id": "xtravels-catalog",
+          "title": "{{title}}",
+          "entityType": "catalog",
+          "i18n": "i18n/catalog.properties"
+        },
+        "payload": {
+          "viz": [
+            {
+              "appId": "sap.capire.travels",
+              "vizId": "travel-process"
+            }
+          ]
+        }
+      }
+    ],
+    "groups": [
+      {
+        "_version": "3.0.0",
+        "identification": {
+          "id": "xtravels-group",
+          "title": "{{title}}",
+          "entityType": "group",
+          "i18n": "i18n/group.properties"
+        },
+        "payload": {
+          "viz": [
+            {
+              "id": "xtravelstravels-001",
+              "appId": "sap.capire.travels",
+              "vizId": "travel-process"
+            }
+          ]
+        }
+      }
+    ],
+    "sites": [
+      {
+        "_version": "3.0.0",
+        "identification": {
+          "id": "xtravels-site",
+          "entityType": "site",
+          "title": "xtravels",
+          "description": "CAP SFlight travel service demo"
+        },
+        "payload": {
+          "config": {
+            "ushellConfig": {
+              "renderers": {
+                "fiori2": {
+                  "componentData": {
+                    "config": {
+                      "applications": {
+                        "Shell-home": {}
+                      },
+                      "enableSearch": true,
+                      "enablePersonalization": true,
+                      "enableSetTheme": true,
+                      "enableSetLanguage": true
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "groupsOrder": ["xtravels-group"],
+          "sap.cloud.portal": {
+            "config": {
+              "theme.id": "sap_horizon",
+              "theme.active": [
+                "sap_horizon",
+                "sap_horizon_dark",
+                "sap_horizon_hcw",
+                "sap_horizon_hcb"
+              ]
+            }
+          }
+        }
+      }
+    ]
+  }
+}
